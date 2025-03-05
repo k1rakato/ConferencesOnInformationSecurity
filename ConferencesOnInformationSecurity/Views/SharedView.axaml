@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ConferencesOnInformationSecurity.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ConferencesOnInformationSecurity.SharedView"
+			 x:DataType="vm:SharedViewModel">
+	
+	<Grid RowDefinitions="80,*">
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+			<ComboBox ItemsSource="{Binding TypeEvents}" Margin="0 0 10 0" SelectedItem="{Binding SelectedEvent}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Eventname}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<ComboBox ItemsSource="{Binding DateOfmeropriatie}" Margin="0 0 10 0" SelectedItem="{Binding SelectDate}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding }" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<Button Content="Авторизоваться" HorizontalAlignment="Right" Command="{Binding NavigationToAuth}" />
+		</StackPanel>
+		<ListBox Grid.Row="1" ItemsSource="{Binding Meropriaties}" Background="White">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+						<Image Source="{Binding Image, Converter= {StaticResource MyImageConverter}}" Width="100"
+                               Height="100"  Margin="0 0 10 0"/>
+						<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+							<TextBlock Text="{Binding Meropriatiename}" Foreground="Black"/>
+							<TextBlock Text="{Binding Event.Eventname}" Foreground="Black"/>
+							<TextBlock Text="{Binding Datemeropriatie}" Foreground="Black"/>
+						</StackPanel>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<TextBlock Text="Мероприятия не найдены" Grid.Row="1" IsVisible="{Binding IsVisible}" Foreground="Black"/>
+	</Grid>
+</UserControl>
