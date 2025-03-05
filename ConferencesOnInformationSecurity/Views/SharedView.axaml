@@ -29,7 +29,7 @@
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-						<Image Source="{Binding Image, Converter= {StaticResource MyImageConverter}}" Width="100"
+						<Image Source="{Binding Image}" Width="100"
                                Height="100"  Margin="0 0 10 0"/>
 						<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 							<TextBlock Text="{Binding Meropriatiename}" Foreground="Black"/>
