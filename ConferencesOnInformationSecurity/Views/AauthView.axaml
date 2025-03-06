@@ -6,5 +6,31 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ConferencesOnInformationSecurity.AauthView"
 			 x:DataType="vm:AuthViewModel">
-  Welcome to Avalonia!
+	<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+		<TextBlock Text="Авторизация" HorizontalAlignment="Center"/>
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Width="400" Margin="10">
+			<TextBlock>Введите логин</TextBlock>
+			<TextBox Text="{Binding Email}"/>
+		</StackPanel>
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Width="400" Margin="10">
+			<TextBlock>Введите пароль</TextBlock>
+			<TextBox Text="{Binding Password}"/>
+		</StackPanel>
+		<UserControl Content="{Binding CanvasCapcha}"></UserControl>
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Width="400" Margin="10">
+			<TextBlock Text="Введите текст с картинки"/>
+			<TextBox Text="{Binding CapchaInput}"/>
+		</StackPanel> 
+		<TextBlock Text="{Binding Message}" Foreground="DarkRed"></TextBlock>
+
+		<StackPanel HorizontalAlignment="Center">
+			<Button Content="Войти" Margin="10" IsEnabled="{Binding IsVisible}" Width="180"
+					HorizontalContentAlignment="Center" Command="{Binding Enter}"/>
+		</StackPanel>	
+		<StackPanel HorizontalAlignment="Center">
+			<Button Content="Назад" Margin="5" IsEnabled="{Binding IsVisible}" Width="90"
+					HorizontalContentAlignment="Center" Command="{Binding Back}"/>
+		</StackPanel>
+	
+	</StackPanel>
 </UserControl>

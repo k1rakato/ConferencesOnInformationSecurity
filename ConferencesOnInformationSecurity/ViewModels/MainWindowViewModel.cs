@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using ConferencesOnInformationSecurity.Models;
 using ReactiveUI;
 
 namespace ConferencesOnInformationSecurity.ViewModels
@@ -8,8 +9,11 @@ namespace ConferencesOnInformationSecurity.ViewModels
         UserControl uc;
 
         public static MainWindowViewModel Self;
-        public UserControl Uc { get => uc; set => this.RaiseAndSetIfChanged(ref uc, value); }
 
+        Organizer authOrganizer;
+
+        public UserControl Uc { get => uc; set => this.RaiseAndSetIfChanged(ref uc, value); }
+        public Organizer AuthOrganizer { get => authOrganizer; set => this.RaiseAndSetIfChanged(ref authOrganizer, value); }
         public MainWindowViewModel()
         {
             uc = new SharedView();

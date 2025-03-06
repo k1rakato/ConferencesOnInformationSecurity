@@ -5,10 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ConferencesOnInformationSecurity.SharedView"
-			 x:DataType="vm:SharedViewModel">
-	
+			 x:DataType="vm:SharedViewModel"
+             xmlns:conv="using:ConferencesOnInformationSecurity.Assets">
+
 	<Grid RowDefinitions="80,*">
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+		<StackPanel Orientation="Horizontal" Margin="15" VerticalAlignment="Center">
 			<ComboBox ItemsSource="{Binding TypeEvents}" Margin="0 0 10 0" SelectedItem="{Binding SelectedEvent}">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
@@ -17,29 +18,24 @@
 				</ComboBox.ItemTemplate>
 			</ComboBox>
 			<ComboBox ItemsSource="{Binding DateOfmeropriatie}" Margin="0 0 10 0" SelectedItem="{Binding SelectDate}">
-				<ComboBox.ItemTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding }" />
-					</DataTemplate>
-				</ComboBox.ItemTemplate>
 			</ComboBox>
-			<Button Content="Авторизоваться" HorizontalAlignment="Right" Command="{Binding NavigationToAuth}" />
+			<Button Content="Авторизоваться" HorizontalAlignment="Right" Command="{Binding NavigationToAuth}"/>
 		</StackPanel>
-		<ListBox Grid.Row="1" ItemsSource="{Binding Meropriaties}" Background="White">
+		<ListBox Grid.Row="1" ItemsSource="{Binding Meropriaties}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 						<Image Source="{Binding Image}" Width="100"
                                Height="100"  Margin="0 0 10 0"/>
 						<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-							<TextBlock Text="{Binding Meropriatiename}" Foreground="Black"/>
-							<TextBlock Text="{Binding Event.Eventname}" Foreground="Black"/>
-							<TextBlock Text="{Binding Datemeropriatie}" Foreground="Black"/>
+							<TextBlock Text="{Binding Meropriatiename}"/>
+							<TextBlock Text="{Binding Event.Eventname}"/>
+							<TextBlock Text="{Binding Datemeropriatie}"/>
 						</StackPanel>
 					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-		<TextBlock Text="Мероприятия не найдены" Grid.Row="1" IsVisible="{Binding IsVisible}" Foreground="Black"/>
+		<TextBlock Text="Мероприятия не найдены" Grid.Row="1" IsVisible="{Binding IsVisible}"/>
 	</Grid>
 </UserControl>
