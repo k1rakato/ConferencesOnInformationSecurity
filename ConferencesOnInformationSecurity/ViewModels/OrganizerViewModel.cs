@@ -36,8 +36,8 @@ namespace ConferencesOnInformationSecurity.ViewModels
 				Greeting = "Доброй ночи!";
 			}
 
-			if (Organizers.Gender.Gendername == "мужской") genderOrg = "Mrs";
-			else genderOrg = "Ms";
+			if (Organizers.Gender.Gendername == "мужской") { genderOrg = "Mrs"; }
+			else {genderOrg = "Ms";}
 
         }
 

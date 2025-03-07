@@ -24,7 +24,6 @@ namespace ConferencesOnInformationSecurity.ViewModels
         Canvas canvasCapcha;
         int counter = 0;
 
-        int timerTime = 15;
         DispatcherTimer _timer;
 
         public string Email { get => email; set => this.RaiseAndSetIfChanged(ref email, value); }
@@ -46,6 +45,7 @@ namespace ConferencesOnInformationSecurity.ViewModels
             Message = "";
             if(Email == "" || Password == "" || CapchaInput=="")
             {
+                counter++;
                 Message = "Поля не заполнены";
                 GenerateCapcha();
                 return;
@@ -59,47 +59,54 @@ namespace ConferencesOnInformationSecurity.ViewModels
                 return;
             }
 
-            Client? client = db.Clients.FirstOrDefault(x => x.Email == Email &&  x.Password == Password);
-			if (client != null)
-			{
-				MainWindowViewModel.Self.Uc = new ClientPage();
-                return;
-            }
 
-            Organizer? organizer = db.Organizers.Include(x => x.Gender).FirstOrDefault(x => x.Email == Email && x.Password == Password);
-            if (organizer != null)
-            {
-                MainWindowViewModel.Self.Uc = new OrganizerPage();
-                return;
-            }
-
+            Client? client = db.Clients.FirstOrDefault(x => x.Email == Email && x.Password == Password);
+            Organizer organizer = db.Organizers.Include(x => x.Gender).FirstOrDefault(x => x.Email == Email && x.Password == Password);
             Moder? moder = db.Moders.Include(x => x.Gender).FirstOrDefault(x => x.Email == Email && x.Password == Password);
-            if (moder != null)
-            {
-                MainWindowViewModel.Self.Uc = new ModersPage();
-                return;
-            }
-
             Jury? jury = db.Juries.Include(x => x.Gender).FirstOrDefault(x => x.Email == Email && x.Password == Password);
-            if (jury != null)
+            if (client != null || organizer != null || moder != null || jury != null)
             {
-                MainWindowViewModel.Self.Uc = new JuryPage();
-                return;
+                if (client != null)
+                {
+                    MainWindowViewModel.Self.Uc = new ClientPage();
+                    return;
+                }
+                if (organizer != null)
+                {
+                    MainWindowViewModel.Self.AuthOrganizer = organizer;
+                    MainWindowViewModel.Self.Uc = new OrganizerPage();
+                    return;
+                }
+
+
+                if (moder != null)
+                {
+                    MainWindowViewModel.Self.Uc = new ModersPage();
+                    return;
+                }
+
+
+                if (jury != null)
+                {
+                    MainWindowViewModel.Self.Uc = new JuryPage();
+                    return;
+                }
             }
 
             else
             {
                 counter++;
-                if(counter == 3)
+                if (counter == 3)
                 {
-                    Message = "Система заблокирована на 15 секунд";
+                    Message = "Разблокировка системы через 15 секунд";
                     IsVisible = false;
-                    _timer.Interval = TimeSpan.FromSeconds(15);
+                    _timer.Interval = new TimeSpan(0, 0, 15);
+                    _timer.Tick += TimerTick;
                     _timer.Start();
                 }
                 else
                 {
-                    Message = "Неверные данные";
+                    Message = "Неверные лд";
                 }
             }
             GenerateCapcha();

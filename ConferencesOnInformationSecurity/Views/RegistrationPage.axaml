@@ -3,6 +3,126 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="ConferencesOnInformationSecurity.RegistrationPage">
-  Welcome to Avalonia!
+             x:Class="ConferencesOnInformationSecurity.RegistrationPage"
+			 xmlns:vm="using:ConferencesOnInformationSecurity.ViewModels"
+			 x:DataType="vm:RegistrationViewModel"
+             xmlns:conv="clr-namespace:ConferencesOnInformationSecurity.Assets">
+	<UserControl.Resources>
+		<conv:ImageConverter x:Key="MyImageConverter" />
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="90"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" 
+					Margin="20">
+			<TextBlock Text="Регистрация жюри/модератора" 
+					   FontSize="30" FontWeight="Bold"/>
+		</StackPanel>
+		
+		<StackPanel Grid.Row="1">
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock Text="Id Number:" Margin="15"/>
+				<TextBox Text="{Binding NumberID}" IsEnabled="False" Height="30" Width="100"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock Text="ФИО:" Margin="15"/>
+				<TextBox Text="{Binding Fio}" Height="30" Width="100"/>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock Text="Пол:" Margin="15"/>
+				<ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Gendername}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</StackPanel>
+
+
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock Text="Роль:" Margin="15"/>
+				<ComboBox ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedRole}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding }"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock Text="Email:" Margin="15"/>
+				<TextBox Text="{Binding Email}" Height="30" Width="100"/>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock Text="Телефон:" Margin="15"/> 
+				<MaskedTextBox Text="{Binding PhoneNumber}" Height="30" Width="100" Mask=""/>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock Text="Направление:" Margin="15"/>
+				<ComboBox ItemsSource="{Binding TypeOfEvents}" SelectedItem="{Binding SelectedTypeOfEvent}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Eventname}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</StackPanel>
+
+			<StackPanel>
+				<CheckBox IsChecked="{Binding IsAttach}">
+					<TextBlock Text="Прикрепить к мероприятию"/>
+				</CheckBox>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" IsVisible="{Binding IsAttach}">
+				<TextBlock Text="Направление:" Margin="15"/>
+				<ComboBox ItemsSource="{Binding Meropriaties}" SelectedItem="{Binding SelectedEvent}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Meropriatiename}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Row="1" Grid.Column="1">
+			<StackPanel>
+				<Button Command="{Binding SelectFoto}">
+					<Image Source="{Binding Image, Converter= {StaticResource MyImageConverter}}" Width="150"
+                               Height="200"/>
+				</Button>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock Text="Пароль:" Margin="15"/>
+				<TextBox Text="{Binding Password}" PasswordChar="{Binding PasswordChar}" Height="30" Width="100"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock Text="Повтор пароля:" Margin="15"/>
+				<TextBox Text="{Binding ConfirmPassword}" PasswordChar="{Binding PasswordChar}" Height="30" Width="100"/>
+			</StackPanel>
+			<StackPanel>
+				<CheckBox IsChecked="{Binding IsVisible}">
+					<TextBlock Text="Видимый пароль"/>
+				</CheckBox>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{Binding Message}" Foreground="Red"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Button Command="{Binding Save}" Content="Ок"/>
+				<Button Command="{Binding Back}" Content="Отмена"/>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
 </UserControl>

@@ -17,19 +17,19 @@ public partial class Moder
 
     public string Email { get; set; } = null!;
 
-    public DateTime Dateofbirth { get; set; }
+    public DateTime? Dateofbirth { get; set; }
 
-    public int Countryid { get; set; }
+    public int? Countryid { get; set; }
 
     public string Phone { get; set; } = null!;
 
-    public int Directionsid { get; set; }
+    public int? Directionsid { get; set; }
 
     public int Eventid { get; set; }
 
     public string Password { get; set; } = null!;
 
-    public string Foto { get; set; } = null!;
+    public string? Foto { get; set; }
 
     public virtual Country Country { get; set; } = null!;
 
