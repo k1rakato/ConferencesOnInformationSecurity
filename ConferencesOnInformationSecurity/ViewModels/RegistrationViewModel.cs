@@ -17,6 +17,7 @@ namespace ConferencesOnInformationSecurity.ViewModels
 {
 	public class RegistrationViewModel : ViewModelBase
 	{
+        // Поля для хранения данных
         private int numberID;
         private string fio;
         private string email;
@@ -57,8 +58,14 @@ namespace ConferencesOnInformationSecurity.ViewModels
         public bool IsAttach { get => isAttach; set => this.RaiseAndSetIfChanged(ref isAttach, value); }
         public string PasswordChar { get => _passwordChar; set => this.RaiseAndSetIfChanged(ref _passwordChar, value); }
 
+        /// <summary>
+        /// Регулярное выражение для проверки email.
+        /// </summary>
         Regex EmailMask = new Regex("^\\S+@\\S+\\.\\S+$");
 
+        /// <summary>
+        /// Конструктор ViewModel.
+        /// </summary>
         public RegistrationViewModel()
         {
             Random rnd = new Random();
@@ -81,6 +88,9 @@ namespace ConferencesOnInformationSecurity.ViewModels
             Image = "";
         }
 
+        /// <summary>
+        /// Метод для выбора фото пользователя.
+        /// </summary>
         public async Task SelectFoto()
         {
             if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop || desktop.MainWindow?.StorageProvider is not { } provider)
@@ -102,16 +112,25 @@ namespace ConferencesOnInformationSecurity.ViewModels
             Image = NumberID + ".png";
         }
 
+        /// <summary>
+        /// Фильтрация мероприятий по выбранному типу.
+        /// </summary>
         private void FiltredMeropriaties()
         {
             Meropriaties = db.Meropriaties.Where(x => x.Event == SelectedTypeOfEvent).ToList();
         }
 
+        /// <summary>
+        /// Метод для возврата на страницу организатора.
+        /// </summary>
         public void Back()
         {
             MainWindowViewModel.Self.Uc = new OrganizerPage();
         }
 
+        /// <summary>
+        /// Метод для сохранения данных пользователя.
+        /// </summary>
         public void Save()
         {
             if (string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(ConfirmPassword) || string.IsNullOrWhiteSpace(Fio) ||
@@ -158,7 +177,7 @@ namespace ConferencesOnInformationSecurity.ViewModels
                     Phone = PhoneNumber,
                     Password = Password,
                     Gender = SelectedGender,
-                    Directionsid = null
+                    Directionsid = null 
                 };
                 if (Image != "")
                 {
@@ -207,8 +226,9 @@ namespace ConferencesOnInformationSecurity.ViewModels
                 {
                     Message = ex.Message;
                 }
+
+                // Код сохранения данных в зависимости от выбранной роли
             }
         }
-
     }
 }

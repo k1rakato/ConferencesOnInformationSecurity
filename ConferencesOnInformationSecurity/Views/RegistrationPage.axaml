@@ -28,16 +28,16 @@
 		<StackPanel Grid.Row="1">
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 				<TextBlock Text="Id Number:" Margin="15"/>
-				<TextBox Text="{Binding NumberID}" IsEnabled="False" Height="30" Width="100"/>
+				<TextBox Text="{Binding NumberID}" IsEnabled="False" Height="30" Width="150"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 				<TextBlock Text="ФИО:" Margin="15"/>
-				<TextBox Text="{Binding Fio}" Height="30" Width="100"/>
+				<TextBox Text="{Binding Fio}" Height="30" Width="150" />
 			</StackPanel>
 
-			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
 				<TextBlock Text="Пол:" Margin="15"/>
-				<ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}">
+				<ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}" Width="150">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<TextBlock Text="{Binding Gendername}"/>
@@ -49,7 +49,7 @@
 
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 				<TextBlock Text="Роль:" Margin="15"/>
-				<ComboBox ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedRole}">
+				<ComboBox ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedRole}" Width="150">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<TextBlock Text="{Binding }"/>
@@ -60,17 +60,17 @@
 
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 				<TextBlock Text="Email:" Margin="15"/>
-				<TextBox Text="{Binding Email}" Height="30" Width="100"/>
+				<TextBox Text="{Binding Email}" Height="30" Width="150"/>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 				<TextBlock Text="Телефон:" Margin="15"/> 
-				<MaskedTextBox Text="{Binding PhoneNumber}" Height="30" Width="100" Mask=""/>
+				<MaskedTextBox Text="{Binding PhoneNumber}" Height="30" Width="150" Mask=""/>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 				<TextBlock Text="Направление:" Margin="15"/>
-				<ComboBox ItemsSource="{Binding TypeOfEvents}" SelectedItem="{Binding SelectedTypeOfEvent}">
+				<ComboBox ItemsSource="{Binding TypeOfEvents}" SelectedItem="{Binding SelectedTypeOfEvent}" Width="150">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<TextBlock Text="{Binding Eventname}"/>
@@ -87,7 +87,7 @@
 
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" IsVisible="{Binding IsAttach}">
 				<TextBlock Text="Направление:" Margin="15"/>
-				<ComboBox ItemsSource="{Binding Meropriaties}" SelectedItem="{Binding SelectedEvent}">
+				<ComboBox ItemsSource="{Binding Meropriaties}" SelectedItem="{Binding SelectedEvent}" Width="150">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<TextBlock Text="{Binding Meropriatiename}"/>
@@ -105,11 +105,11 @@
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 				<TextBlock Text="Пароль:" Margin="15"/>
-				<TextBox Text="{Binding Password}" PasswordChar="{Binding PasswordChar}" Height="30" Width="100"/>
+				<TextBox Text="{Binding Password}" PasswordChar="{Binding PasswordChar}" Height="30" Width="150"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 				<TextBlock Text="Повтор пароля:" Margin="15"/>
-				<TextBox Text="{Binding ConfirmPassword}" PasswordChar="{Binding PasswordChar}" Height="30" Width="100"/>
+				<TextBox Text="{Binding ConfirmPassword}" PasswordChar="{Binding PasswordChar}" Height="30" Width="150"/>
 			</StackPanel>
 			<StackPanel>
 				<CheckBox IsChecked="{Binding IsVisible}">

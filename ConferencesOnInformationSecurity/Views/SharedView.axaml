@@ -20,9 +20,9 @@
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
 			</ComboBox>
-			<ComboBox ItemsSource="{Binding DateOfmeropriatie}" SelectedItem="{Binding SelectDate}" Foreground="Black"  Margin="10">
+			<ComboBox ItemsSource="{Binding DateOfMeropriatie}" SelectedItem="{Binding SelectDate}" Foreground="Black"  Margin="10">
 			</ComboBox>
-			<Button Content="Авторизоваться" HorizontalAlignment="Right" Command="{Binding NavigationToAuth}" Background="LightGray" Foreground="Black"/>
+			<Button Content="Авторизоваться" HorizontalAlignment="Right" Command="{Binding NavigateToAuth}" Background="LightGray" Foreground="Black"/>
 		</StackPanel>
 		<ListBox Grid.Row="1" ItemsSource="{Binding Meropriaties}" Foreground="Black">
 			<ListBox.ItemTemplate>
